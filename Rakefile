@@ -17,3 +17,4 @@ task :validate do
   end
 end
 PuppetLint.configuration.send('disable_documentation')
+PuppetLint.configuration.send('disable_class_inherits_from_params_class')
