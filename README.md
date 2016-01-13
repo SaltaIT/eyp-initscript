@@ -33,6 +33,8 @@ None
 
 ### Beginning with initscript
 
+basic example from eyp-kibana:
+
 ```puppet
 initscript::service { 'kibana':
   cmd => "${basedir}/${productname}/bin/kibana",
