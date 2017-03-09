@@ -1,6 +1,7 @@
 define initscript::service(
                             $cmd,
-                            $initscript = $name,
+                            $initscript     = $name,
+                            $option_scripts = [],
                           ) {
 
   file { "/etc/init.d/${initscript}":

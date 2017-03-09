@@ -5,6 +5,12 @@
 # Default-Start: 3 5
 # Default-Stop: 0 6
 
+<% if @option_scripts.any? -%>
+<% @option_scripts.each do |val| -%>
+. <%= val %> > /dev/null 2>&1
+<% end -%>
+<% end -%>
+
 PIDFILE=/var/run/generic.init.<%= @initscript %>.pid
 CMD="<%= @cmd %>"
 
