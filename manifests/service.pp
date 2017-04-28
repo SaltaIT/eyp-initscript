@@ -1,6 +1,9 @@
 define initscript::service(
                             $cmd,
-                            $initscript=$name,
+                            $initscript       = $name,
+                            $option_scripts   = [],
+                            $description      = "default script for ${name}",
+                            $tcp_listen_check = undef,
                           ) {
 
   file { "/etc/init.d/${initscript}":

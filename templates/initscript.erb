@@ -1,9 +1,15 @@
 #!/bin/bash
 # chkconfig: 345 20 99
-# description: <%= @initscript %>
+# description: <%= @description %>
 #. /etc/rc.d/init.d/functions
 # Default-Start: 3 5
 # Default-Stop: 0 6
+
+<% if @option_scripts.any? -%>
+<% @option_scripts.each do |val| -%>
+. <%= val %> > /dev/null 2>&1
+<% end -%>
+<% end -%>
 
 PIDFILE=/var/run/generic.init.<%= @initscript %>.pid
 CMD="<%= @cmd %>"
@@ -33,6 +39,42 @@ case $1 in
     $0 start
   ;;
   'status')
+  <%- if defined?(@tcp_listen_check) -%>
+  LSOFBIN=$(which lsof > /dev/null 2>&1)
+
+  if [ -z "${LSOFBIN}" ];
+  then
+    NETSTATBIN=$(which netstat > /dev/null 2>&1)
+
+    if [ -z "${NETSTATBIN}" ];
+    then
+      echo "neither lsof nor netstat found, aborting"
+      exit 1
+    fi
+
+    netstat -tpln | grep ":<%= @tcp_listen_check %>\b" > /dev/null 2>&1
+
+    if [ $? -eq 0 ];
+    then
+      echo "running"
+      exit 0
+    else
+      echo "stopped"
+      exit 1
+    fi
+  fi
+
+  $LSOFBIN -i :<%= @tcp_listen_check %> -sTCP:LISTEN > /dev/null 2>&1
+
+  if [ $? -eq 0 ];
+  then
+    echo "running"
+    exit 0
+  else
+    echo "stopped"
+    exit 1
+  fi
+  <%- else -%>
     if [ -z "$(cat $PIDFILE 2>/dev/null)" ];
     then
       echo "stopped"
@@ -47,9 +89,10 @@ case $1 in
         exit 1
       fi
     fi
+  <%- end -%>
   ;;
   *)
-  echo "$0 $1: WTF?"
+  echo "$0 $1: unrecorgnized command"
   exit 1
   ;;
 esac
