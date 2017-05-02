@@ -28,7 +28,7 @@ describe 'initscript context' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
-    it "error free server startup" do
+    it "process started" do
      expect(shell("ps -fea | grep 1337m").exit_code).to be_zero
     end
 
