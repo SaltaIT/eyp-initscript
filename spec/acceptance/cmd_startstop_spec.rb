@@ -11,7 +11,7 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmdstart':
-        cmd_start => 'sleep 31173m &',
+        cmd_start => 'nohup sleep 31173m &',
         cmd_stop  => 'pkill sleep',
       }
 
@@ -33,21 +33,6 @@ describe 'initscript context' do
 
     it "sleep started" do
      expect(shell("ps -fea | grep [3]1173m").exit_code).to be_zero
-    end
-
-    it 'should work with no errors' do
-      pp = <<-EOF
-
-      initscript::service { 'democmdstart':
-        cmd_start => 'sleep 31173m &',
-        cmd_stop  => 'pkill sleep',
-      }
-
-      EOF
-
-      # Run it twice and test for idempotency
-      expect(apply_manifest(pp).exit_code).to_not eq(1)
-      expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
     it "stop service" do
