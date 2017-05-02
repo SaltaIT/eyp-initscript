@@ -23,7 +23,7 @@ describe 'initscript context' do
     end
 
     it "start service" do
-     expect(shell("/etc/init.d/democmdstart start").exit_code).to be_zero
+     expect(shell("bash -x /etc/init.d/democmdstart start").exit_code).to be_zero
     end
 
     it "sleep started" do
@@ -46,7 +46,7 @@ describe 'initscript context' do
     end
 
     it "stop service" do
-     expect(shell("/etc/init.d/democmdstart stop").exit_code).to be_zero
+     expect(shell("bash -x /etc/init.d/democmdstart stop").exit_code).to be_zero
     end
 
     it "sleep stopped" do
