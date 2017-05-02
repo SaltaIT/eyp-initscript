@@ -29,7 +29,7 @@ describe 'initscript context' do
     end
 
     it "process started" do
-     expect(shell("ps -fea | grep 1337m").exit_code).to be_zero
+     expect(shell("ps -fea | grep [1]337m").exit_code).to be_zero
     end
 
   end

@@ -32,7 +32,7 @@ describe 'initscript context' do
     end
 
     it "sleep started" do
-     expect(shell("ps -fea | grep 31173m").exit_code).to be_zero
+     expect(shell("ps -fea | grep [3]1173m").exit_code).to be_zero
     end
 
     it 'should work with no errors' do
@@ -55,7 +55,7 @@ describe 'initscript context' do
     end
 
     it "sleep stopped" do
-     expect(shell("! ps -fea | grep 31173m").exit_code).to be_zero
+     expect(shell("! ps -fea | grep [3]1173m").exit_code).to be_zero
     end
 
   end
