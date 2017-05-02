@@ -22,6 +22,11 @@ describe 'initscript context' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
+    #/etc/init.d/democmdstart
+    it "debug service" do
+     expect(shell("cat /etc/init.d/democmdstart").exit_code).to be_zero
+    end
+
     it "start service" do
      expect(shell("bash -x /etc/init.d/democmdstart start").exit_code).to be_zero
     end
