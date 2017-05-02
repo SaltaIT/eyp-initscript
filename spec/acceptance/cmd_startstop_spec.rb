@@ -31,6 +31,10 @@ describe 'initscript context' do
      expect(shell("bash -x /etc/init.d/democmdstart start").exit_code).to be_zero
     end
 
+    it "ps started" do
+     expect(shell("ps auxf").exit_code).to be_zero
+    end
+
     it "sleep started" do
      expect(shell("ps -fea | grep [3]1173m").exit_code).to be_zero
     end
