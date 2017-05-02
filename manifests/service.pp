@@ -8,6 +8,7 @@ define initscript::service(
                             $tcp_listen_check = undef,
                             $pid_file         = "/var/run/generic.init.${name}.pid",
                           ) {
+  include ::initscript
 
   # validacions
   if($cmd==undef)
