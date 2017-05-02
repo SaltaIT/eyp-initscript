@@ -11,16 +11,23 @@
 <% end -%>
 <% end -%>
 
-PIDFILE=/var/run/generic.init.<%= @initscript %>.pid
+PIDFILE="<%= @pid_file %>"
+<% if defined?(@cmd) -%>
 CMD="<%= @cmd %>"
+<% end -%>
 
 case $1 in
   'start')
+    <%- if defined?(@cmd) -%>
     $CMD &
     echo $! > $PIDFILE
+    <%- else -%>
+    <%= @cmd_start %>
+    <%- end -%>
     exit 0
   ;;
   'stop')
+  <%- if defined?(@cmd) -%>
   if [ -z "$(cat $PIDFILE)" ];
   then
     echo "stopped"
@@ -33,6 +40,9 @@ case $1 in
     rm $PIDFILE
     exit 0
   fi
+  <%- else -%>
+  <%= @cmd_stop %>
+  <%- end -%>
   ;;
   'restart')
     $0 stop
@@ -92,7 +102,7 @@ case $1 in
   <%- end -%>
   ;;
   *)
-  echo "$0 $1: unrecorgnized command"
+  echo "$0 $1: unrecognized command"
   exit 1
   ;;
 esac
