@@ -11,7 +11,7 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmdstart':
-        cmd_start => 'sleep 31173m',
+        cmd_start => 'sleep 31173m &',
         cmd_stop  => 'pkill sleep',
       }
 
@@ -37,7 +37,7 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmdstart':
-        cmd_start => 'sleep 31173m',
+        cmd_start => 'sleep 31173m &',
         cmd_stop  => 'pkill sleep',
       }
 
