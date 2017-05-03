@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.5
+
+* bugfix check tcp port
+
 ## 0.1.4
 
 * **initscript::service**: added optional tcp check for script's status

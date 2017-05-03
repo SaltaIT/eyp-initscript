@@ -50,11 +50,11 @@ case $1 in
   ;;
   'status')
   <%- if defined?(@tcp_listen_check) -%>
-  LSOFBIN=$(which lsof > /dev/null 2>&1)
+  LSOFBIN=$(which lsof 2> /dev/null)
 
   if [ -z "${LSOFBIN}" ];
   then
-    NETSTATBIN=$(which netstat > /dev/null 2>&1)
+    NETSTATBIN=$(which netstat 2> /dev/null)
 
     if [ -z "${NETSTATBIN}" ];
     then
