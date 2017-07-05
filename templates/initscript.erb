@@ -16,10 +16,22 @@ PIDFILE="<%= @pid_file %>"
 CMD="<%= @cmd %>"
 <% end -%>
 
+<% if @run_user == "root" -%>
+EXECSTART=""
+<% else -%>
+RUN_USER=<%= @run_user %>
+if [ "$(id -u)" -eq "$(id -u <%= @run_user %>)" ];
+then
+  EXECSTART="/bin/bash"
+else
+  EXECSTART="/bin/su -p -s /bin/bash $RUN_USER"
+fi
+<% end -%>
+
 case $1 in
   'start')
     <%- if defined?(@cmd) -%>
-    $CMD &
+    $EXECSTART $CMD &
     echo $! > $PIDFILE
     <%- else -%>
     <%= @cmd_start %>
@@ -41,7 +53,7 @@ case $1 in
     exit 0
   fi
   <%- else -%>
-  <%= @cmd_stop %>
+  $EXECSTART <%= @cmd_stop %>
   <%- end -%>
   ;;
   'restart')
