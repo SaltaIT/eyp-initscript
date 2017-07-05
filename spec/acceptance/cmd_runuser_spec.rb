@@ -18,7 +18,7 @@ describe 'initscript context' do
       ->
 
       initscript::service { 'evilcmd':
-        cmd => 'sleep 1337m',
+        cmd => 'sleep 666m',
         run_user => 'evil',
       }
 
@@ -37,7 +37,7 @@ describe 'initscript context' do
     end
 
     it "process started" do
-     expect(shell("ps -fea | grep [1]337m").exit_code).to be_zero
+     expect(shell("ps -fea | grep sleep | grep [6]66 | grep evil").exit_code).to be_zero
     end
 
   end
