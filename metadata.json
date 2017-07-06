@@ -1,14 +1,14 @@
 {
   "name": "eyp-initscript",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "eyp",
   "summary": "generic init script",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-initscript",
-  "project_page": null,
+  "project_page": "https://github.com/NTTCom-MS/eyp-initscript",
   "issues_url": "https://github.com/NTTCom-MS/eyp-initscript/issues",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0 < 9.9.9"}
   ],
   "operatingsystem_support": [
     {

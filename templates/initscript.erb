@@ -19,10 +19,18 @@ CMD="<%= @cmd %>"
 case $1 in
   'start')
     <%- if defined?(@cmd) -%>
+    <%- if @run_user != "root" -%>
+    /bin/su -p -s /bin/bash <%= @run_user %> -c "$CMD" &
+    <%- else -%>
     $CMD &
+    <%- end -%>
     echo $! > $PIDFILE
     <%- else -%>
+    <%- if @run_user != "root" -%>
+    /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd_start %>"
+    <%- else -%>
     <%= @cmd_start %>
+    <%- end -%>
     <%- end -%>
     exit 0
   ;;
@@ -41,7 +49,11 @@ case $1 in
     exit 0
   fi
   <%- else -%>
+  <%- if @run_user != "root" -%>
+  /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd_stop %>"
+  <%- else -%>
   <%= @cmd_stop %>
+  <%- end -%>
   <%- end -%>
   ;;
   'restart')

@@ -15,6 +15,13 @@ describe 'initscript context' do
         cmd_stop  => 'pkill sleep',
       }
 
+      ->
+
+      service { 'democmdstart':
+        ensure => 'running',
+        enable => true,
+      }
+
       EOF
 
       # Run it twice and test for idempotency

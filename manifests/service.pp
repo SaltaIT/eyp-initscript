@@ -2,6 +2,7 @@ define initscript::service(
                             $cmd              = undef,
                             $cmd_start        = undef,
                             $cmd_stop         = undef,
+                            $run_user         = 'root',
                             $initscript       = $name,
                             $option_scripts   = [],
                             $description      = "default script for ${name}",
