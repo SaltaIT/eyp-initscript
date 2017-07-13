@@ -28,6 +28,10 @@ describe 'initscript context' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
+    it "debug service" do
+     expect(shell("cat /etc/init.d/democmd").exit_code).to be_zero
+    end
+
     it "process started" do
      expect(shell("ps -fea | grep [1]337m").exit_code).to be_zero
     end

@@ -36,6 +36,10 @@ describe 'initscript context' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
+    it "debug service" do
+     expect(shell("cat /etc/init.d/evilcmd").exit_code).to be_zero
+    end
+
     it "process started" do
      expect(shell("ps -fea | grep sleep | grep [6]66 | grep evil").exit_code).to be_zero
     end
