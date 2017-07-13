@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.7
+
+* improved init script
+
 ## 0.1.6
 
 * added **run_user** to **initscript::service**
