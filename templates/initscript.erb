@@ -10,6 +10,11 @@
 . <%= val %> > /dev/null 2>&1
 <% end -%>
 <% end -%>
+<% if defined?(@debug) -%>
+
+set -xv
+exec > <%= @debug %> 2>&1
+<% end -%>
 
 PIDFILE="<%= @pid_file %>"
 

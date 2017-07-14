@@ -8,6 +8,7 @@ define initscript::service(
                             $description      = "default script for ${name}",
                             $tcp_listen_check = undef,
                             $pid_file         = "/var/run/generic.init.${name}.pid",
+                            $debug            = undef,
                           ) {
   include ::initscript
 

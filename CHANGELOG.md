@@ -3,6 +3,7 @@
 ## 0.1.8
 
 * bugfix **initscript::service**
+* added debug options to **initscript::service**
 
 ## 0.1.7
 

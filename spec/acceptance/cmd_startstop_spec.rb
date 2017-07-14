@@ -13,6 +13,7 @@ describe 'initscript context' do
       initscript::service { 'democmdstart':
         cmd_start => 'nohup sleep 31173m &',
         cmd_stop  => 'pkill sleep',
+        debug     => '/democmdstart.log',
       }
 
       ->
@@ -32,6 +33,10 @@ describe 'initscript context' do
     #/etc/init.d/democmdstart
     it "debug service" do
      expect(shell("cat /etc/init.d/democmdstart").exit_code).to be_zero
+    end
+
+    it "debug log" do
+     expect(shell("cat /democmdstart.log").exit_code).to be_zero
     end
 
     it "start service" do

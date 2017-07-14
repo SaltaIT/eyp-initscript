@@ -18,8 +18,9 @@ describe 'initscript context' do
       ->
 
       initscript::service { 'evilcmd':
-        cmd => 'sleep 666m',
+        cmd      => 'sleep 666m',
         run_user => 'evil',
+        debug    => '/evilcmd.log',
       }
 
       ->
@@ -38,6 +39,10 @@ describe 'initscript context' do
 
     it "debug service" do
      expect(shell("cat /etc/init.d/evilcmd").exit_code).to be_zero
+    end
+
+    it "debug log" do
+     expect(shell("cat /evilcmd.log").exit_code).to be_zero
     end
 
     it "process started" do

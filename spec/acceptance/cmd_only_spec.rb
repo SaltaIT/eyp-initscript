@@ -11,7 +11,8 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmd':
-        cmd => 'sleep 1337m',
+        cmd   => 'sleep 1337m',
+        debug => '/democmd.log',
       }
 
       ->
@@ -30,6 +31,10 @@ describe 'initscript context' do
 
     it "debug service" do
      expect(shell("cat /etc/init.d/democmd").exit_code).to be_zero
+    end
+
+    it "debug log" do
+     expect(shell("cat /democmd.log").exit_code).to be_zero
     end
 
     it "process started" do
