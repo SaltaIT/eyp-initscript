@@ -17,7 +17,7 @@ case $1 in
   'start')
     <%- if defined?(@cmd) -%>
     <%- if @run_user != "root" -%>
-    /bin/su -p -s /bin/bash <%= @run_user %> -c "$CMD" &
+    /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd %>" &
     <%- else -%>
     <%= @cmd %> &
     <%- end -%>
