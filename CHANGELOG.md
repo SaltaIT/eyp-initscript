@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.8
+
+* bugfix **initscript::service**
+
 ## 0.1.7
 
 * improved init script
