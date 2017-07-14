@@ -39,10 +39,6 @@ describe 'initscript context' do
      expect(shell("cat /democmdstart.log").exit_code).to be_zero
     end
 
-    it "start service" do
-     expect(shell("bash -x /etc/init.d/democmdstart start").exit_code).to be_zero
-    end
-
     it "ps started" do
      expect(shell("ps auxf").exit_code).to be_zero
     end
