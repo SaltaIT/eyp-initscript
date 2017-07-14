@@ -10,19 +10,21 @@
 . <%= val %> > /dev/null 2>&1
 <% end -%>
 <% end -%>
+<% if defined?(@debug) -%>
+
+set -xv
+exec > <%= @debug %> 2>&1
+<% end -%>
 
 PIDFILE="<%= @pid_file %>"
-<% if defined?(@cmd) -%>
-CMD="<%= @cmd %>"
-<% end -%>
 
 case $1 in
   'start')
     <%- if defined?(@cmd) -%>
     <%- if @run_user != "root" -%>
-    /bin/su -p -s /bin/bash <%= @run_user %> -c "$CMD" &
+    /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd %>" &
     <%- else -%>
-    $CMD &
+    <%= @cmd %> &
     <%- end -%>
     echo $! > $PIDFILE
     <%- else -%>

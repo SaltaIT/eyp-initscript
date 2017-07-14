@@ -11,7 +11,8 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmd':
-        cmd => 'sleep 1337m',
+        cmd   => 'sleep 1337m',
+        debug => '/democmd.log',
       }
 
       ->
@@ -26,6 +27,14 @@ describe 'initscript context' do
       # Run it twice and test for idempotency
       expect(apply_manifest(pp).exit_code).to_not eq(1)
       expect(apply_manifest(pp).exit_code).to eq(0)
+    end
+
+    it "debug service" do
+     expect(shell("cat /etc/init.d/democmd").exit_code).to be_zero
+    end
+
+    it "debug log" do
+     expect(shell("cat /democmd.log").exit_code).to be_zero
     end
 
     it "process started" do
