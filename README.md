@@ -45,7 +45,7 @@ initscript::service { 'kibana':
 
 ## Usage
 
-* Start a given service using a start command that runs in the foreground
+* Start a given service using a start command that runs in the foregroundA
 
 ```puppet
 initscript::service { 'demo1':
@@ -68,8 +68,6 @@ initscript::service { 'demo3':
   cmd_stop  => 'pkill sleep',
 }
 ```
-
-
 
 ## Reference
 
