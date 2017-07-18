@@ -19,13 +19,13 @@ Creates a generic sysV initscript given a command to run.
 
 ## Module Description
 
-Creates a generic sysV initscript given a command to run.
+Manages a sysV compatible init script to be able to start arbitrary services
 
 ## Setup
 
 ### What initscript affects
 
-Creates a **$name** script file on **/etc/init.d** to start and stop **$cmd**
+Creates a **$name** script file on **/etc/init.d** to start and stop a service
 
 ### Setup Requirements
 
@@ -45,8 +45,31 @@ initscript::service { 'kibana':
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+* Start a given service using a start command that runs in the foreground
+
+```puppet
+initscript::service { 'demo1':
+  cmd   => 'sleep 1337m',
+}
+```
+* Start a given service using a start command that runs in the foreground using a specific user
+
+```puppet
+initscript::service { 'demo2':
+  cmd      => 'sleep 666m',
+  run_user => 'evil',
+}
+```
+* Start a given service using a command to start it and another command to stop it. Start command have to start the service in the background
+
+```puppet
+initscript::service { 'demo3':
+  cmd_start => 'nohup sleep 31173m &',
+  cmd_stop  => 'pkill sleep',
+}
+```
+
+
 
 ## Reference
 
