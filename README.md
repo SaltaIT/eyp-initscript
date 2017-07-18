@@ -71,10 +71,20 @@ initscript::service { 'demo3':
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### defines
+
+#### initscript::service
+
+* **initscript**: script name (default: resource's name)
+* **description**: script description (default: "default script for ${name}")
+* **cmd**: command to start a foreground service (default: undef)
+* **cmd_start**: command to start a servie in background mode (default: undef)
+* **cmd_stop**: command to stop a service in background mode (default: undef)
+* **run_user**: start daemon using a specific user (default: root)
+* **option_scripts**: load script before running start/stop commands (default: [])
+* **tcp_listen_check**: use a specific TCP port to check if the daemon is running (default: undef)
+* **pid_file**: set PID file for the service - only used in **cmd** mode (default: /var/run/generic.init.${name}.pid)
+* **debug**: set a debug log file (default: undef)
 
 ## Limitations
 
