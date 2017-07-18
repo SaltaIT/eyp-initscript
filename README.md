@@ -52,6 +52,7 @@ initscript::service { 'demo1':
   cmd   => 'sleep 1337m',
 }
 ```
+
 * Start a given service using a start command that runs in the foreground using a specific user
 
 ```puppet
@@ -60,6 +61,7 @@ initscript::service { 'demo2':
   run_user => 'evil',
 }
 ```
+estil
 * Start a given service using a command to start it and another command to stop it. Start command have to start the service in the background
 
 ```puppet
