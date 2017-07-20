@@ -22,14 +22,14 @@ case $1 in
   'start')
     <%- if defined?(@cmd) -%>
     <%- if @run_user != "root" -%>
-    /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd %>" &
+    /bin/su -l -s /bin/bash <%= @run_user %> -c "<%= @cmd %>" &
     <%- else -%>
     <%= @cmd %> &
     <%- end -%>
     echo $! > $PIDFILE
     <%- else -%>
     <%- if @run_user != "root" -%>
-    /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd_start %>"
+    /bin/su -l -s /bin/bash <%= @run_user %> -c "<%= @cmd_start %>"
     <%- else -%>
     <%= @cmd_start %>
     <%- end -%>
@@ -52,7 +52,7 @@ case $1 in
   fi
   <%- else -%>
   <%- if @run_user != "root" -%>
-  /bin/su -p -s /bin/bash <%= @run_user %> -c "<%= @cmd_stop %>"
+  /bin/su -l -s /bin/bash <%= @run_user %> -c "<%= @cmd_stop %>"
   <%- else -%>
   <%= @cmd_stop %>
   <%- end -%>
