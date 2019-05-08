@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.9
+
+* load user's variables
+* metadata lint
+
 ## 0.1.8
 
 * bugfix **initscript::service**

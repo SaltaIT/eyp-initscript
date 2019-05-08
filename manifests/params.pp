@@ -8,6 +8,9 @@ class initscript::params {
     'Debian':
     {
     }
+    'Suse':
+    {
+    }
     default  : { fail('Unsupported OS!') }
   }
 }

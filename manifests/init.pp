@@ -1,3 +1,2 @@
-class initscript(
-                ) inherits initscript::params {
+class initscript() inherits initscript::params {
 }
