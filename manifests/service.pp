@@ -2,6 +2,7 @@ define initscript::service(
                             $cmd              = undef,
                             $cmd_start        = undef,
                             $cmd_stop         = undef,
+                            $ensure           = 'present',
                             $run_user         = 'root',
                             $initscript       = $name,
                             $option_scripts   = [],
@@ -29,7 +30,7 @@ define initscript::service(
   }
 
   file { "/etc/init.d/${initscript}":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
