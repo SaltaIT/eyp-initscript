@@ -10,6 +10,9 @@ define initscript::service(
                             $tcp_listen_check = undef,
                             $pid_file         = "/var/run/generic.init.${name}.pid",
                             $debug            = undef,
+                            $define_service   = false,
+                            $service_enable   = true,
+                            $service_ensure   = 'running',
                           ) {
   include ::initscript
 
@@ -35,5 +38,13 @@ define initscript::service(
     group   => 'root',
     mode    => '0755',
     content => template("${module_name}/initscript.erb"),
+  }
+
+  if $define_service and ($ensure != 'absent') {
+    service { $initscript:
+      ensure    => $service_ensure,
+      enable    => $service_enable,
+      subscribe => File["/etc/init.d/${initscript}"],
+    }
   }
 }
