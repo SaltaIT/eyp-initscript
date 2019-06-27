@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.11
+
+* Add the ability to easily add a service resource for the new init script - thanks to [coreone](https://github.com/coreone) for this [PR-133](https://github.com/NTTCom-MS/eyp-initscript/pull/12)
+
 ## 0.1.10
 
 * Allow for the init file to be removed by adding and ensure option - thanks to [coreone](https://github.com/coreone) for this [PR-133](https://github.com/NTTCom-MS/eyp-initscript/pull/10)

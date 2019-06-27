@@ -11,16 +11,10 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmdstart':
-        cmd_start => 'nohup sleep 31173m &',
-        cmd_stop  => 'pkill sleep',
-        debug     => '/democmdstart.log',
-      }
-
-      ->
-
-      service { 'democmdstart':
-        ensure => 'running',
-        enable => true,
+        cmd_start      => 'nohup sleep 31173m &',
+        cmd_stop       => 'pkill sleep',
+        debug          => '/democmdstart.log',
+        define_service => true,
       }
 
       EOF

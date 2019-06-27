@@ -11,15 +11,9 @@ describe 'initscript context' do
       pp = <<-EOF
 
       initscript::service { 'democmd':
-        cmd   => 'sleep 1337m',
-        debug => '/democmd.log',
-      }
-
-      ->
-
-      service { 'democmd':
-        ensure => 'running',
-        enable => true,
+        cmd            => 'sleep 1337m',
+        debug          => '/democmd.log',
+        define_service => true,
       }
 
       EOF

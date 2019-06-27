@@ -40,7 +40,8 @@ define initscript::service(
     content => template("${module_name}/initscript.erb"),
   }
 
-  if $define_service and ($ensure != 'absent') {
+  if $define_service and ($ensure != 'absent')
+  {
     service { $initscript:
       ensure    => $service_ensure,
       enable    => $service_enable,

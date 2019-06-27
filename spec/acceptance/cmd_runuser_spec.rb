@@ -11,24 +11,19 @@ describe 'initscript context' do
       pp = <<-EOF
 
       user { 'evil':
-        shell => '/bin/bash',
+        shell      => '/bin/bash',
         managehome => true,
       }
 
       ->
 
       initscript::service { 'evilcmd':
-        cmd      => 'sleep 666m',
-        run_user => 'evil',
-        debug    => '/evilcmd.log',
+        cmd            => 'sleep 666m',
+        run_user       => 'evil',
+        debug          => '/evilcmd.log',
+        define_service => true,
       }
 
-      ->
-
-      service { 'evilcmd':
-        ensure => 'running',
-        enable => true,
-      }
 
       EOF
 
