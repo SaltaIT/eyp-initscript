@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.12
+
+* Reworked script to get PID from PIDFILE once - thanks to [coreone](https://github.com/coreone) for this [PR-14](https://github.com/NTTCom-MS/eyp-initscript/pull/14)
+
 ## 0.1.11
 
 * Add the ability to easily add a service resource for the new init script - thanks to [coreone](https://github.com/coreone) for this [PR-12](https://github.com/NTTCom-MS/eyp-initscript/pull/12)

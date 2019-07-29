@@ -1,6 +1,6 @@
 {
   "name": "eyp-initscript",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": "eyp",
   "summary": "generic init script",
   "license": "Apache-2.0",
